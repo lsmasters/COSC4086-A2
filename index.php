@@ -16,8 +16,8 @@
 
   <p> Welcome, <?=$_SESSION['username'] ?></p>
 
-  
-
-
 </body>
+  <footer>
+    <p>  <a href='/logout.php'>Click HERE to logout </a></p>
+  </footer>
 </html>
