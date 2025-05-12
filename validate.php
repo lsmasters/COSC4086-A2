@@ -9,6 +9,7 @@
   $password = $_REQUEST['password'];
 
   if ($username == $valid_uname && $password == $valid_pword){
+    $_SESSION['authenticated'] = 1;
     header ("location: index.php");
   } else{
     if(!isset($_SESSION['failed_attempts'])){
