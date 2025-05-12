@@ -3,7 +3,7 @@
   
   if(isset($_SESSION['failed_attempts'])) { 
     echo "This is unsuccessful login attempt # " . $_SESSION['failed_attempts']; 
-    echo ".  Please try again.  ";
+    echo '<p style="color:red">PLEASE TRY AGAIN!  </p>';
   }
 
 ?>
