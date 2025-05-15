@@ -29,8 +29,8 @@
     <br>
     <input type="submit" value="SUBMIT">
   </form>
-
-
+    <p>  <a href='/create_user.php'>Click here to CREATE a new account </a></p>
+  
 
 </body>
 </html>
