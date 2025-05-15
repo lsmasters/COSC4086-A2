@@ -7,7 +7,7 @@ Class User {
     $sql =
     $stmt = $db->prepare( "SELECT * FROM users;");
     $stmt->execute();
-    $rows = $stmt->fetch(PDO::FETCH_ASSOC);
+    $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
     return $rows;
   }
 }
