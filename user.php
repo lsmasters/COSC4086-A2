@@ -14,8 +14,8 @@ Class User {
   public function create_user($username,$password){
     $db = db_connect();
     $sql = "INSERT INTO users (username, password) VALUES ($username, password_hash($password, PASSWORD_DEFAULT))";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $stmt = $db->prepare($sql);
+    $stmt -> execute();
   }
 
 }
