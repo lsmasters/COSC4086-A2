@@ -1,17 +1,14 @@
 <?php
-$require_once 'user.php';
+  require_once 'user.php';
 
-user = new User();
-$user_list = $user->get_all_users();
+  $user = new User();
+  $user_list = $user->get_all_users();
+ 
+  foreach ($user_list as $item){
+    echo $item['username'];
+    echo "<br>";
+    echo $item['password'];
+    echo "<br>";
+  }
 
-//echo "<pre>";
-//print_r($user_list);  
-foreach ($user_list as $item){
-  echo $item['username'];
-  echo "<br>";
-}
-foreach ($user_list as $item){
-  echo $item['password'];
-  echo "<br>";
-}
 ?>

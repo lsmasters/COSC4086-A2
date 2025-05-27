@@ -1,7 +1,6 @@
 <?php
   session_start();
 
-  
   require_once 'user.php';   //open db file
 
   $user = new User();
@@ -11,19 +10,22 @@
   $_SESSION['username'] = $username;  
   $password = $_REQUEST['password'];
   
-  $hpassword = password_hash($password, PASSWORD_DEFAULT); //hash password
+  $hashedPassword = password_hash($password, PASSWORD_DEFAULT); //hash password
  
   foreach($user_list as $item){  //check the list for a match
-    echo $item['password'];
+    /*echo $item['password'];
     echo "<br>";
-    echo $hpassword;
-    echo "<br>";
-    if (($username == $item['username']) && ($hpassword == $item['password'])){
+    //echo $hpassword;
+    echo $hashedPassword;
+    echo "<br>"; */
+    if (($username == $item['username']) && (password_verify($password,$item['password']))){
+        header ("location: index.php");//match: GO TO INDEX PAGE
+        echo 'PASSWORD MATCH';
         $_SESSION['authenticated'] = 1;
-        header ("location: index.php");  //match
+        exit;
     }
   } 
-  //no matc
+  //no match
   if(!isset($_SESSION['failed_attempts'])){  
       $_SESSION['failed_attempts'] = 1;  
   } else{
