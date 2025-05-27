@@ -22,18 +22,19 @@ $_SESSION['usernameUsed'] = 0;
 
 // 3. check password validity...if error return to create_user with password flag set
 if (strlen($password) >= 8 &&
-    preg_match('[A-Z]', $password) &&
-    preg_match('[a-z]', $password) && 
-    preg_match('[0-9]', $password) &&
-    preg_match('/[^a-zA-Z0-9]/',$password)){
+    preg_match('/[A-Z]/', $password) &&
+    preg_match('/[a-z]/', $password) && 
+    preg_match('/[0-9]/', $password) &&
+    preg_match('/[!@#$%]/',$password)){
         header ("location: login.php");
         $_SESSION['passwordInvalid'] = 0;
         //add to db
         exit; 
+} else{
+    header ("location: create_user.php");
+    $_SESSION['passwordInvalid'] = 1;
+    exit;
 }
-header ("location: create_user.php");
-$_SESSION['passwordInvalid'] = 1;
-exit;
 
 //  4. add new item to db with userame and hashed password...return to login page
 

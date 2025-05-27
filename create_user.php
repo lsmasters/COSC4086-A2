@@ -38,7 +38,7 @@
     <p>    2. Contains uppercase letter(s)</p>
     <p>    3. Contains lowercase letter(s)</p>
     <p>    4. Contains number(s)</p>
-    <p>    5. Contains special character(s)</p>  
+    <p>    5. Contains special character(s)(!@#$%)</p>  
 
 
 </body>
