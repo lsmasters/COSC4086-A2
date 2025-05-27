@@ -26,16 +26,15 @@ if (strlen($password) >= 8 &&
     preg_match('/[a-z]/', $password) && 
     preg_match('/[0-9]/', $password) &&
     preg_match('/[!@#$%]/',$password)){
+        $user->create_user($username,$password);  //add to db
         header ("location: login.php");
         $_SESSION['passwordInvalid'] = 0;
-        //add to db
         exit; 
-} else{
+} else{   
     header ("location: create_user.php");
     $_SESSION['passwordInvalid'] = 1;
     exit;
 }
 
-//  4. add new item to db with userame and hashed password...return to login page
 
 ?>
