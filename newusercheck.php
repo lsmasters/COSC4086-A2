@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once 'user.php';   //open db file
+
+$user = new User();
+$user_list = $user->get_all_users();  //get all db records
 
 //1.  get new username and password from form
 $username = $_REQUEST['username'];
@@ -7,22 +11,30 @@ $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 
 //2.   check db for username...if included return to create_user with username flag set
+foreach ($user_list as $item){
+  if ($username == $item['username']){
+    header ("location: create_user.php");
+    $_SESSION['usernameUsed'] = 1;
+    exit;
+  }
+}
+$_SESSION['usernameUsed'] = 0;
 
 // 3. check password validity...if error return to create_user with password flag set
+if (strlen($password) >= 8 &&
+    preg_match('[A-Z]', $password) &&
+    preg_match('[a-z]', $password) && 
+    preg_match('[0-9]', $password) &&
+    preg_match('/[^a-zA-Z0-9]/',$password)){
+        header ("location: login.php");
+        $_SESSION['passwordInvalid'] = 0;
+        //add to db
+        exit; 
+}
+header ("location: create_user.php");
+$_SESSION['passwordInvalid'] = 1;
+exit;
 
 //  4. add new item to db with userame and hashed password...return to login page
 
-if ($username == $valid_uname && $password == $valid_pword){
-  $_SESSION['authenticated'] = 1;
-  header ("location: index.php");
-} else{
-  if(!isset($_SESSION['failed_attempts'])){
-    $_SESSION['failed_attempts'] = 1;  
-  } else{
-    $_SESSION['failed_attempts'] += 1;
-  }
-  header ("location: login.php");  
-  echo "This is unsuccessful login attempt # " . $_SESSION['failed_attempts']; 
-  echo ".  Please try again.  ";
-
-}
+?>

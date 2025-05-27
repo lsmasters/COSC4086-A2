@@ -1,5 +1,13 @@
 <?php
   session_start();
+  if (isset($_SESSION['usernameUsed']) &&
+    $_SESSION['usernameUsed']){
+    echo '<p style="color:red">USERNAME ALREADY EXISTS!  PLEASE TRY AGAIN!  </p>';
+  }
+    if(isset($_SESSION['passwordInvalid']) &&
+       $_SESSION['passwordInvalid']){
+      echo '<p style="color:red">PASSWORD DOES NOT MEET REQUIREMENTS!  PLEASE TRY AGAIN!  </p>';
+    }
 ?>
 
 <!DOCTYPE html>

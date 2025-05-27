@@ -10,14 +10,8 @@
   $_SESSION['username'] = $username;  
   $password = $_REQUEST['password'];
   
-  $hashedPassword = password_hash($password, PASSWORD_DEFAULT); //hash password
+  foreach ($user_list as $item){
  
-  foreach($user_list as $item){  //check the list for a match
-    /*echo $item['password'];
-    echo "<br>";
-    //echo $hpassword;
-    echo $hashedPassword;
-    echo "<br>"; */
     if (($username == $item['username']) && (password_verify($password,$item['password']))){
         header ("location: index.php");//match: GO TO INDEX PAGE
         echo 'PASSWORD MATCH';
