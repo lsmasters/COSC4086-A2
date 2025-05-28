@@ -20,7 +20,7 @@
   <form action="/validate.php" method="post">
     <label for="username">Username:</label>
     <br>
-    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="username" autofocus>
     <br>
     <label for="password">Password:</label>
     <br>

@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <h1>Assignment 1</h1>
+  <h1>Assignment 2</h1>
 
   <p> Welcome, <?=$_SESSION['username'] ?></p>
   <p> Today's date is:  <?php echo date("F j, Y"); ?></p>

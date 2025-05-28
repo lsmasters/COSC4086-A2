@@ -9,17 +9,9 @@
     $username = $_REQUEST['username'];
     $_SESSION['username'] = $username;  
     $password = trim($_REQUEST['password']);
-    $password2 = trim($_REQUEST['password2']);
-
-    if ($password != $password2) {  //check for password entry match
-        $_SESSION['pwmismatch'] = 1;
-        header ("location: create_user.php");
-        exit;
-    } else {
-        $_SESSION['pwmismatch'] = 0;
-    }
+    
   
-    foreach ($user_list as $item){
+    foreach ($user_list as $item) { //check to see if username already used
  
         if (($username == $item['username']) && (password_verify($password,$item['password']))){
             $_SESSION['authenticated'] = 1;
