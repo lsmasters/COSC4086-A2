@@ -13,9 +13,14 @@ Class User {
 
   public function create_user($username,$password){
     $db = db_connect();
-    $sql = "INSERT INTO users (username, password) VALUES ($username, password_hash($password, PASSWORD_DEFAULT))";
-    $stmt = $db->prepare($sql);
-    $stmt -> execute();
+    $phashed = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+    $stmt = $db -> prepare($sql);
+    $stmt -> bindParam(':username', $username);
+    $stmt -> bindParam(':password', $phashed);
+  
+    return $stmt -> execute();
+  
   }
 
 }
