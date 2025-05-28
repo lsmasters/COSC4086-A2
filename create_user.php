@@ -1,12 +1,15 @@
 <?php
   session_start();
+  if(isset($_SESSION['pwmismatch']) && $_SESSION['pwmismatch'] == 1){
+      echo '<p style="color:red">PASSWORD MISMATCH! <br> PLEASE TRY AGAIN!  </p>';
+  }
   if (isset($_SESSION['usernameUsed']) &&
     $_SESSION['usernameUsed']){
-    echo '<p style="color:red">USERNAME ALREADY EXISTS!  PLEASE TRY AGAIN!  </p>';
+    echo '<p style="color:red">USERNAME ALREADY EXISTS! <br>  PLEASE TRY AGAIN!  </p>';
   }
     if(isset($_SESSION['passwordInvalid']) &&
        $_SESSION['passwordInvalid']){
-      echo '<p style="color:red">PASSWORD DOES NOT MEET REQUIREMENTS!  PLEASE TRY AGAIN!  </p>';
+      echo '<p style="color:red">PASSWORD DOES NOT MEET REQUIREMENTS!  <br> PLEASE TRY AGAIN!  </p>';
     }
 ?>
 
@@ -22,11 +25,15 @@
   <form action="/newusercheck.php" method="post">
     <label for="username">Username:</label>
     <br>
-    <input type="text" id="username" name="username">
+    <input type="text" id="username" name="username" placeholder = "Enter Username" autofocus>
     <br>
     <label for="password">Password:</label>
     <br>
     <input type="password" id="password" name="password">
+    <br>
+    <label for="password">PasswordAgain:</label>
+    <br>
+    <input type="password" id="password2" name="password2">
     <br>
     <br>
     <input type="submit" value="SUBMIT">
