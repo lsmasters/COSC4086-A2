@@ -20,7 +20,14 @@ Class User {
     $stmt -> bindParam(':password', $phashed);
   
     return $stmt -> execute();
-  
+  }
+
+  public function delete_user($username){
+    $db = db_connect();
+    $sql = "DELETE FROM users WHERE username = :username";
+    $stmt = $db -> prepare($sql);
+    $stmt -> bindParam(':username', $username); 
+    return $stmt -> execute();
   }
 
 }

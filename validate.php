@@ -22,9 +22,8 @@
     foreach ($user_list as $item){
  
         if (($username == $item['username']) && (password_verify($password,$item['password']))){
-            header ("location: index.php");//match: GO TO INDEX PAGE
-            echo 'PASSWORD MATCH';
             $_SESSION['authenticated'] = 1;
+            header ("location: index.php");//match: GO TO INDEX PAGE
             exit;
        }
      } 
